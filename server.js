@@ -30,12 +30,11 @@ throng({
 });
 
 function startMaster() {
-    logger.info('started master');
+    logger.info(' started master');
 }
 
 function startWorker(id) {
-      logger.info(`@\n@\n@\n${process.env.LEANCLOUD_APP_MASTER_KEY}`);
-    logger.info(`started worker ${id}`);
+    logger.info(` started worker ${id}`);
     var relay = new TCPRelay({
         serverAddress: process.env['SERVER_ADDRESS'] || process.env['LEANCLOUD_API_SERVER'] || server.serverAddress || '127.0.0.1',
         serverPort: process.env['LEANCLOUD_APP_PORT'] || server.serverPort || 8388,

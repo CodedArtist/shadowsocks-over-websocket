@@ -13,6 +13,9 @@
     "type": "git",
     "url": "git+https://github.com/VincentChanX/shadowsocks-over-websocket.git"
   },
+  "engines": {
+    "node": "8.11.3"
+  },
   "keywords": [
     "proxy"
   ],

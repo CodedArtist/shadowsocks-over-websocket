@@ -1,3 +1,11 @@
+var AV = require('leanengine');
+
+AV.init({
+  appId: process.env.LEANCLOUD_APP_ID || '{{appid}}',
+  appKey: process.env.LEANCLOUD_APP_KEY || '{{appkey}}',
+  masterKey: process.env.LEANCLOUD_APP_MASTER_KEY || '{{masterkey}}'
+});
+//
 const TCPRelay = require('./tcprelay').TCPRelay;
 const server = require('commander');
 const constants = require('./constants');

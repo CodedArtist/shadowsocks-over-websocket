@@ -31,6 +31,8 @@
     "log4js": "^1.1.1",
     "shadowsocks": "^1.5.3",
     "throng": "^4.0.0",
-    "ws": "^2.2.3"
+    "ws": "^2.2.3",
+    "leancloud-storage": "^3.11.0",
+    "leanengine": "^3.3.2"
   }
 }

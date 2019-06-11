@@ -10,7 +10,6 @@ AV.init({
 
 // init express
 var app = express();
-app.set('view engine', 'ejs');
 app.use(AV.Cloud);
  
 var expressWs = require('express-ws');
@@ -21,11 +20,7 @@ app.ws('/echo', function(ws, req) {
     ws.send(msg);
   });
 });
-
-// start server
-app.listen(process.env['LEANCLOUD_APP_PORT'])
-
-///////
+//
 const TCPRelay = require('./tcprelay').TCPRelay;
 const server = require('commander');
 const constants = require('./constants');

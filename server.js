@@ -28,9 +28,9 @@ function startMaster() {
 function startWorker(id) {
     logger.info(`started worker ${id}`);
     var relay = new TCPRelay({
-        serverAddress: process.env['SERVER_ADDRESS'] || server.serverAddress || '127.0.0.1',
-        serverPort: process.env['PORT'] || server.serverPort || 8388,
-        password: process.env['PASSWORD'] || server.password || 'shadowsocks-over-websocket',
+        serverAddress: process.env['SERVER_ADDRESS'] || process.env['LEANCLOUD_API_SERVER'] || server.serverAddress || '127.0.0.1',
+        serverPort: process.env['LEANCLOUD_APP_PORT'] || server.serverPort || 8388,
+        password: process.env['PASSWORD'] || server.password || 'aes-256-cfb',
         method: process.env['METHOD'] || server.method || 'aes-256-cfb'
     }, false);
 

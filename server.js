@@ -44,6 +44,6 @@ function startWorker(id) {
 
     relay.setLogLevel(server.logLevel);
     relay.setLogFile(server.logFile);
-    relay.setServerName('server-' + id);
+    relay.setServerName(' server-' + id);
     relay.bootstrap();
 }

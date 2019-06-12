@@ -1,21 +1,6 @@
 var AV = require('leanengine');
 var express = require("express");
 
-AV.init({
-  appId: process.env.LEANCLOUD_APP_ID || '{{appid}}',
-  appKey: process.env.LEANCLOUD_APP_KEY || '{{appkey}}',
-  masterKey: process.env.LEANCLOUD_APP_MASTER_KEY || '{{masterkey}}'
-});
-
-
-// init express
-var app = express();
-app.use(AV.express());
-app.get('/', function(req, res) {
-  res.sendStatus(200);
-
-});
-
 //
 const TCPRelay = require('./tcprelay').TCPRelay;
 const server = require('commander');
@@ -35,20 +20,37 @@ server
     .parse(process.argv);
 
 throng({
-    workers: process.env.WEB_CONCURRENCY || 1,
+    // workers: process.env.WEB_CONCURRENCY || 1,
+    workers: 1, // 并发数量
     master: startMaster,
     start: startWorker
 });
 
+
 function startMaster() {
     logger.info(' started master');
+
+    AV.init({
+        appId: process.env.LEANCLOUD_APP_ID || '{{appid}}',
+        appKey: process.env.LEANCLOUD_APP_KEY || '{{appkey}}',
+        masterKey: process.env.LEANCLOUD_APP_MASTER_KEY || '{{masterkey}}'
+      });
+    // init express
+    var app = express();
+    app.use(AV.express());
+    app.get('/', function(req, res) {
+        res.sendStatus(200);
+    });
+    app.listen(3000, function (err) {
+        console.log('Node app is running on port:', 3000);
+    });
 }
 
 function startWorker(id) {
     logger.info(` started worker ${id}`);
     var relay = new TCPRelay({
         serverAddress: process.env['SERVER_ADDRESS'] || process.env['LEANCLOUD_API_SERVER'] || server.serverAddress || '127.0.0.1',
-        serverPort: process.env['LEANCLOUD_APP_PORT'] || server.serverPort || 8388,
+        serverPort: process.env['LEANCLOUD_APP_PORT'] || server.serverPort || 3000,
         password: process.env['PASSWORD'] || server.password || 'aes-256-cfb',
         method: process.env['METHOD'] || server.method || 'aes-256-cfb'
     }, false);

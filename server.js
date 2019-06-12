@@ -10,16 +10,8 @@ AV.init({
 
 // init express
 var app = express();
-app.use(AV.Cloud);
+app.use(AV.express());
  
-var expressWs = require('express-ws');
-expressWs(app);
-
-app.ws('/echo', function(ws, req) {
-  ws.on('message', function(msg) {
-    ws.send(msg);
-  });
-});
 //
 const TCPRelay = require('./tcprelay').TCPRelay;
 const server = require('commander');

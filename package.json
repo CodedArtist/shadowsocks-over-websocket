@@ -22,6 +22,9 @@
     "url": "https://github.com/VincentChanX/shadowsocks-over-websocket/issues"
   },
   "homepage": "https://github.com/VincentChanX/shadowsocks-over-websocket#readme",
+  "engines": {
+    "node": "8.11.3"
+  },
   "dependencies": {
     "bufferutil": "^3.0.0",
     "commander": "^2.9.0",

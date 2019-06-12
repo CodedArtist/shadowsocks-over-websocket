@@ -11,7 +11,11 @@ AV.init({
 // init express
 var app = express();
 app.use(AV.express());
- 
+app.get('/', function(req, res) {
+  res.sendStatus(200);
+
+});
+
 //
 const TCPRelay = require('./tcprelay').TCPRelay;
 const server = require('commander');
